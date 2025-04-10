@@ -1,3 +1,4 @@
+" "
 
 import { useEffect, useState } from "react"
 import {
@@ -13,9 +14,11 @@ import {
   Play,
   CheckCircle,
   MapPin,
-  Mail
+  Mail,
+  MessageCircle,
+  FileQuestion,
+  ArrowRight,
 } from "lucide-react"
-
 
 export default function GHRCEMLearning() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -78,22 +81,50 @@ export default function GHRCEMLearning() {
         <nav className="hidden md:block">
           <ul className="flex gap-8">
             <li>
-              <a href="#" className="flex items-center font-medium text-gray-800 transition-colors hover:text-orange-500">
+              <a
+                href="#"
+                className="flex items-center font-medium text-gray-800 transition-colors hover:text-orange-500"
+              >
                 <Home className="mr-2 h-5 w-5" /> Home
               </a>
             </li>
             <li>
-              <a href="#courses" className="flex items-center font-medium text-gray-800 transition-colors hover:text-orange-500">
+              <a
+                href="#courses"
+                className="flex items-center font-medium text-gray-800 transition-colors hover:text-orange-500"
+              >
                 <BookOpen className="mr-2 h-5 w-5" /> Courses
               </a>
             </li>
             <li>
-              <a href="#materials" className="flex items-center font-medium text-gray-800 transition-colors hover:text-orange-500">
+              <a
+                href="#materials"
+                className="flex items-center font-medium text-gray-800 transition-colors hover:text-orange-500"
+              >
                 <FileText className="mr-2 h-5 w-5" /> Materials
               </a>
             </li>
             <li>
-              <a href="#contact" className="flex items-center font-medium text-gray-800 transition-colors hover:text-orange-500">
+              <a
+                href="/doubts"
+                className="flex items-center font-medium text-gray-800 transition-colors hover:text-orange-500"
+              >
+                <MessageCircle className="mr-2 h-5 w-5" /> Doubts
+              </a>
+            </li>
+            <li>
+              <a
+                href="/quiz"
+                className="flex items-center font-medium text-gray-800 transition-colors hover:text-orange-500"
+              >
+                <FileQuestion className="mr-2 h-5 w-5" /> Quizzes
+              </a>
+            </li>
+            <li>
+              <a
+                href="#contact"
+                className="flex items-center font-medium text-gray-800 transition-colors hover:text-orange-500"
+              >
                 <Phone className="mr-2 h-5 w-5" /> Contact
               </a>
             </li>
@@ -103,17 +134,28 @@ export default function GHRCEMLearning() {
         <div className="hidden md:flex md:gap-4">
           {currentUser ? (
             <div className="flex items-center gap-4">
-              <span className="font-medium">{currentUser.name} ({currentUser.role})</span>
-              <button onClick={handleLogout} className="flex items-center rounded-lg bg-gray-800 px-4 py-2 font-medium text-white transition-all hover:bg-gray-700">
+              <span className="font-medium">
+                {currentUser.name} ({currentUser.role})
+              </span>
+              <button
+                onClick={handleLogout}
+                className="flex items-center rounded-lg bg-gray-800 px-4 py-2 font-medium text-white transition-all hover:bg-gray-700"
+              >
                 <LogOut className="mr-2 h-5 w-5" /> Logout
               </button>
             </div>
           ) : (
             <>
-              <a href="/login" className="flex items-center rounded-lg bg-gray-800 px-4 py-2 font-medium text-white transition-all hover:bg-gray-700">
+              <a
+                href="/login"
+                className="flex items-center rounded-lg bg-gray-800 px-4 py-2 font-medium text-white transition-all hover:bg-gray-700"
+              >
                 <User className="mr-2 h-5 w-5" /> Sign In
               </a>
-              <a href="/register" className="flex items-center rounded-lg bg-orange-500 px-4 py-2 font-medium text-white transition-all hover:bg-orange-600">
+              <a
+                href="/register"
+                className="flex items-center rounded-lg bg-orange-500 px-4 py-2 font-medium text-white transition-all hover:bg-orange-600"
+              >
                 <Edit className="mr-2 h-5 w-5" /> Register
               </a>
             </>
@@ -312,6 +354,76 @@ export default function GHRCEMLearning() {
           </div>
         </section>
 
+        {/* Doubts Section */}
+        <section className="bg-white px-5 py-20 md:px-[5%]">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 inline-block text-4xl font-bold">❓ Student Doubts</h2>
+            <p className="mx-auto max-w-2xl text-gray-600">
+              Have a question? Post your doubts and get answers from teachers and peers
+            </p>
+          </div>
+
+          <div className="mx-auto max-w-3xl bg-gray-50 p-8 rounded-lg shadow-md">
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-semibold mb-2">Need Help?</h3>
+              <p className="text-gray-600">
+                Our doubt forum allows you to post your questions and get answers from teachers and fellow students.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <a
+                href="/doubts"
+                className="inline-flex items-center rounded-lg bg-orange-500 px-6 py-3 font-medium text-white transition-all hover:bg-orange-600"
+              >
+                <MessageCircle className="mr-2 h-5 w-5" /> Go to Doubts Forum
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Quiz Section */}
+        <section className="bg-gray-50 px-5 py-20 md:px-[5%]">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 inline-block text-4xl font-bold">📝 Interactive Quizzes</h2>
+            <p className="mx-auto max-w-2xl text-gray-600">
+              Test your knowledge with our interactive quizzes and track your progress
+            </p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="bg-white p-6 rounded-lg shadow-md transform transition-all hover:-translate-y-2 hover:shadow-xl">
+              <div className="text-5xl text-orange-500 mb-4">📊</div>
+              <h3 className="text-xl font-semibold mb-2">Track Your Progress</h3>
+              <p className="text-gray-600 mb-4">
+                Take quizzes to assess your understanding and track your improvement over time.
+              </p>
+              <a href="/quiz" className="inline-flex items-center text-orange-500 hover:underline">
+                View Quizzes <ArrowRight className="ml-1 h-4 w-4" />
+              </a>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md transform transition-all hover:-translate-y-2 hover:shadow-xl">
+              <div className="text-5xl text-orange-500 mb-4">🧠</div>
+              <h3 className="text-xl font-semibold mb-2">Test Your Knowledge</h3>
+              <p className="text-gray-600 mb-4">
+                Challenge yourself with quizzes on various topics to reinforce your learning.
+              </p>
+              <a href="/quiz" className="inline-flex items-center text-orange-500 hover:underline">
+                Take a Quiz <ArrowRight className="ml-1 h-4 w-4" />
+              </a>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md transform transition-all hover:-translate-y-2 hover:shadow-xl">
+              <div className="text-5xl text-orange-500 mb-4">🏆</div>
+              <h3 className="text-xl font-semibold mb-2">Earn Achievements</h3>
+              <p className="text-gray-600 mb-4">Complete quizzes to earn achievements and showcase your expertise.</p>
+              <a href="/quiz" className="inline-flex items-center text-orange-500 hover:underline">
+                View Achievements <ArrowRight className="ml-1 h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* Registration Section */}
         {!currentUser && (
           <section
@@ -461,6 +573,16 @@ export default function GHRCEMLearning() {
                 </a>
               </li>
               <li>
+                <a href="/doubts" className="text-gray-300 transition-all hover:text-orange-500 hover:pl-1">
+                  Doubts
+                </a>
+              </li>
+              <li>
+                <a href="/quiz" className="text-gray-300 transition-all hover:text-orange-500 hover:pl-1">
+                  Quizzes
+                </a>
+              </li>
+              <li>
                 <a href="#registration" className="text-gray-300 transition-all hover:text-orange-500 hover:pl-1">
                   Register
                 </a>
@@ -493,4 +615,3 @@ export default function GHRCEMLearning() {
     </div>
   )
 }
-
